@@ -15,7 +15,11 @@
     <p id="fortune">Click me to see your fortune!</p>
 
     <script type="text/javascript">
-        document.getElementById("fortune").innerHTML = "Today will be a good day!";
+        var fortunes = ["The world is your oyster", "So it goes", "This too shall pass"];
+
+        var randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)];
+
+        document.getElementById("fortune").innerHTML = randomFortune;
     </script>
     
 </body>
