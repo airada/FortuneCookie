@@ -6,6 +6,50 @@
     text-align: center;
 }
 
+body, html{
+    height:100%;
+    padding:0;
+    margin:0;
+}
+
+body {
+    background-image: url("img/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+@font-face {
+    font-family: LucidaCalligraphy;
+    src: url(fonts/LCALLIG.TTF);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
 #fortune {
     margin: auto;
     padding: 15%;
@@ -15,9 +59,9 @@
 
 #checkbox {
     margin: auto;
-    padding: 15%;
+    padding: 30%;
     text-align:center;
-    width: 25%;
+    width: 50%;
 }
 
  /* Container holding the image and the text */
@@ -33,4 +77,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: LucidaCalligraphy;
+    font-size: 150%;
   } 
