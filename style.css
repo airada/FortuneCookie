@@ -5,6 +5,7 @@ html, body {
 
 body {
   width: 900px;
+  overflow: hidden;
 }
 
  /* Container holding the image and the text */
