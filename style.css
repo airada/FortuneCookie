@@ -4,14 +4,11 @@ html, body {
 }
 
 body {
-  width: 900px;
   overflow: hidden;
 }
 
  /* Container holding the image and the text */
 .banner {
-  width: 100%;
-  max-width: 40%;
   background-image: url("assets/img/mesh-gradient.png");
   background-position: center;
   box-shadow: inset 0 0 0 2000px rgba(33, 15, 9, 0.5);
