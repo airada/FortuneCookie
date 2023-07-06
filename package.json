@@ -1,0 +1,9 @@
+{
+    "name": "jirada-daily-quote",
+    "description": "This widget is a quotation generator in the style of an iOS Banner.",
+    "version": "1.0.0",
+    "engines": {
+      "node": "16.17.0"
+    }
+  }
+  
