@@ -1,4 +1,4 @@
-var fortunes = ["If they can get you asking the wrong questions, they don't have to worry about answers. - Thomas Pynchon",
+var quotations = ["If they can get you asking the wrong questions, they don't have to worry about answers. - Thomas Pynchon",
                 "We judge others by their actions and ourselves by our intentions. - Henry Wadsworth Longfellow",
                 "Life is a tragedy when seen in close-up, but a comedy in a long-shot. - Charlie Chaplin",
                 "Sometimes you never realize the value of a moment until it becomes a memory. - Dr. Seuss",
@@ -9,7 +9,10 @@ var fortunes = ["If they can get you asking the wrong questions, they don't have
                 "When you do things right, people won't be sure you've done anything at all.",
                 "Right and wrong are just words. What matters is what you do.",
                 "What do they call the person who graduated last in his class in med school? Doctor.",
+                "A dream is not that which you see while sleeping, it is something that does not let you sleep. - APJ Abdul Kalam, Wings of Fire: An Autobiography",
                 "There are 1,000 lessons in defeat, but only one in victory. - Confucius",
+                "If you know the enemy and know yourself, you need not fear the result of a hundred battles. If you know yourself but not the enemy, for every victory gained you will also suffer a defeat. If you know neither the enemy nor yourself, you will succumb in every battle. - Sun Tzu",
+                "You don't become great by trying to be great. You become great by wanting to do something, and doing it so hard that you become great in the process. - XKCD",
                 "Life isn't about finding yourself. Life is about creating yourself. - George Bernard Shaw",
                 "Silence is part of the music and our love was an orchestra.",
                 "Worry is a misuse of imagination.",
@@ -17,6 +20,7 @@ var fortunes = ["If they can get you asking the wrong questions, they don't have
                 "The path to Hell is paved with good intentions.",
                 "No one can make you feel inferior without your consent. - Eleanor Roosevelt",
                 "If you do not build your own dream someone will hire you to help build theirs.",
+                "Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid. - Albert Einstein",
                 "We all make choices, but in the end, our choices make us. - Andrew Ryan, Bioshock",
                 "If you are depressed, you live in the past. If you are anxious, you live in the future. If you are at peace, you live in the present. - Lao Tzu",
                 "War does not determine who is right - only who is left. - Bertrand Russell",
@@ -27,6 +31,7 @@ var fortunes = ["If they can get you asking the wrong questions, they don't have
                 "It's so hard to forget pain, but it's even harder to remember sweetness. We have no scar to show for happiness. We learn so little from peace. - Chuck Palahniuk, Diary",
                 "Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale",
                 "People don't love you the way they should, or the way you want them to, but the way they can.",
+                "The surest way to corrupt a youth is to tell him to hold in higher esteem those who think alike than those who think differently. - Friedrich Nietzche",
                 "If you always do what you've always done, you'll always get what you always got.",
                 "Good judgement comes from experience and experience comes from bad judgement.",
                 "Man cannot remake himself without suffering, for he is both the marble and the sculptor. - Alexis Carrel",
@@ -94,6 +99,33 @@ var fortunes = ["If they can get you asking the wrong questions, they don't have
                 "The strong ones don't win. The ones that win are strong.",
                 "This world is merciless, and it's also very beautiful."];
 
-        var randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)].trim();
 
-        document.getElementById("quotation").innerHTML = randomFortune;
+function getLocalStorageDate() {
+    if (localStorage.getItem == null){
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
+        date.setHours(0,0,0,0);
+        return date;
+    } else {
+        var date = localStorage.getItem("date");
+        return date;
+    }
+};
+
+var date = Date(getLocalStorageDate());
+console.log(date);
+
+var currentDate = new Date();
+currentDate.setHours(0,0,0,0);
+
+var randomQuotation = "";
+
+if (date < currentDate) {
+     randomQuotation = quotations[Math.floor(Math.random()*quotations.length)].trim();
+    localStorage.setItem("randomQuotation",randomQuotation);
+    localStorage.setItem("date", new Date());
+} else {
+    randomQuotation = localStorage.getItem("randomQuotation");
+}
+
+document.getElementById("quotation").innerHTML = randomQuotation;
