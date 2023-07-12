@@ -67,7 +67,7 @@ const port = process.env.PORT || 3000;
 mongoose.set("strictQuery", false);
 mongoose.set('debug', true);
 mongoose.
-connect(process.env.CONNECTION_STRING)
+connect(process.env.CONNECTION_STRING,{ useNewUrlParser: true })
 .then(() => {
     console.log('connected to MongoDB')
     app.listen(port, ()=> {
