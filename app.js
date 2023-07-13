@@ -10,9 +10,7 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.get('/', function (req, res) {
-    res.sendfile('./index.html');
-});
+app.use(express.static('public'));
 
 app.get('/quotation', async(req, res) =>{
     try {
