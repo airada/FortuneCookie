@@ -76,7 +76,8 @@ function getStoredDate() {
     fetch('/date')
     .then(res => res.json())
     .then(data => {
-        stored_date = data;
+        let timestamp = data[0]["timestamp"];
+        stored_date = timestamp;
     })
     .catch(error => console.log('ERROR'));
 
