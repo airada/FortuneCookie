@@ -71,10 +71,33 @@ function getLocalStorageDate() {
     }
 };
 
+function getStoredDate() {
+    fetch('/date')
+    .then(res => {
+        if (res.ok) {
+            return res;
+        } else {
+            console.log('Not Successful')
+        }
+    })
+    .then(data => {
+        console.log(data);
+        return data;
+    })
+    .catch(error => console.log('ERROR'));
+}
+
 var storageDate = getLocalStorageDate();
+let stored_date = getStoredDate();
+const date = new Date(stored_date * 1000); // Multiply by 1000 to convert to milliseconds
 
 var currentDate = new Date();
 currentDate.setHours(0,0,0,0);
+
+console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
+
+let date_valid = stored_date < currentDate;
+console.log("The stored date is less than the current date: "+date_valid);
 
 var randomQuotation = "";
 
@@ -88,16 +111,5 @@ if (storageDate < currentDate) {
 
 document.getElementById("quotation").innerHTML = randomQuotation;
 
-fetch('/quotation', {
-    method: 'GET'
-})
-.then(res => {
-    if (res.ok) {
-        console.log('SUCCESS')
-        return res.json();
-    } else {
-        console.log('Not Successful')
-    }
-})
-.then(data => console.log(data))
-.catch(error => console.log('ERROR'));
+
+
