@@ -72,19 +72,15 @@ function getLocalStorageDate() {
 };
 
 function getStoredDate() {
+    let stored_date = 0;
     fetch('/date')
-    .then(res => {
-        if (res.ok) {
-            return res;
-        } else {
-            console.log('Not Successful')
-        }
-    })
+    .then(res => res.json())
     .then(data => {
-        console.log(data);
-        return data;
+        stored_date = data;
     })
     .catch(error => console.log('ERROR'));
+
+    return stored_date;
 }
 
 var storageDate = getLocalStorageDate();

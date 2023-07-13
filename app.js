@@ -15,8 +15,7 @@ app.use(express.static('public'));
 app.get('/date', async(req, res) =>{
     try {
         const result = await Quotation.find({id: 0});
-        let timestamp = result[0]["timestamp"];
-        res.status(200).json(timestamp);
+        res.status(200).json(result);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
