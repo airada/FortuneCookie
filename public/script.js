@@ -88,6 +88,16 @@ if (storageDate < currentDate) {
 
 document.getElementById("quotation").innerHTML = randomQuotation;
 
-// fetch("http://localhost:3000/quotation")
-//   .then((response) => response.json())
-//   .then((json) => console.log(json));
+fetch('/quotation', {
+    method: 'GET'
+})
+.then(res => {
+    if (res.ok) {
+        console.log('SUCCESS')
+        return res.json();
+    } else {
+        console.log('Not Successful')
+    }
+})
+.then(data => console.log(data))
+.catch(error => console.log('ERROR'));
