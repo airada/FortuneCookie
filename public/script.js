@@ -76,12 +76,13 @@ function getStoredDate() {
     fetch('/date')
     .then(res => res.json())
     .then(data => {
-        let timestamp = data[0]["timestamp"];
-        stored_date = timestamp;
+        const timestamp = data[0]["timestamp"];
+        return timestamp;
     })
-    .catch(error => console.log('ERROR'));
-
-    return stored_date;
+    .catch(error => {
+        console.log('ERROR');
+        return stored_date;
+    });
 }
 
 var storageDate = getLocalStorageDate();
