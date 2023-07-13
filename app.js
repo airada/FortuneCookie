@@ -12,10 +12,19 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(express.static('public'));
 
+app.get('/date', async(req, res) =>{
+    try {
+        const result = await Quotation.find({id: 0});
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 app.get('/quotation', async(req, res) =>{
     try {
-        const quotation = await Quotation.find({}).sort({id: 1});
-        res.status(200).json(quotation);
+        const quotations = await Quotation.find({}).sort({id: 1});
+        res.status(200).json(quotations);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
