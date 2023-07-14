@@ -78,7 +78,9 @@ async function getStoredDate() {
 var storageDate = getLocalStorageDate();
 const stored_date = getStoredDate();
 console.log(stored_date);
-const date = new Date(previous_date * 1000);
+let timestamp = stored_date[0]["timestamp"];
+console.log(timestamp);
+// const date = new Date(previous_date * 1000);
 
 var currentDate = new Date();
 currentDate.setHours(0,0,0,0);
