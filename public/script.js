@@ -77,33 +77,53 @@ async function getDate() {
         const json = await response.json();
 
         const timestamp = json[0].timestamp;
-        console.log("timestamp from getDate(): "+timestamp);
-        return timestamp;
+        let date = new Date(timestamp * 1000);
+        date.setHours(0,0,0,0);
+
+        return date;
     } catch (error) {
         console.log(error);
     }
-    
 }
 
-function isOldDate(date) {
-    let stored_date = new Date(date * 1000);
-    stored_date.setHours(0,0,0,0);
-
-    var today = new Date();
+function outdated(date) {
+    let today = new Date();
     today.setHours(0,0,0,0);
 
-    if (stored_date < today) {
+    console.log("The stored date is: "+date+". The current date is: "+today+".");
+
+    if (date < today) {
         return true;
     } else { return false; }
+}
+
+async function getQuotation() {
+    try {
+        const response = await fetch('/quotation');
+        const json = await response.json();
+
+        let total_quotations = json.length;
+        console.log("The total number of quotations is current: "+total_quotations);
+        let quotation_id = Math.floor(Math.random()*total_quotations);
+
+        const quotation_response = await fetch('/quotation/'+quotation_id);
+        const quotation_json = await quotation_response.json();
+
+        let quotation = quotation_json[0].quotation;
+
+        return quotation;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function setQuotation() {
     try {
         const date = await getDate();
         console.log("timestamp inside setQuotation(): "+date);
-        if (isOldDate(date)){
-            console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
-            console.log("The stored date is less than the current date: "+date_valid);
+        if (outdated(date)){
+            const quotation = await getQuotation();
+            console.log("New quotation is: "+quotation);
         }
     } catch (error) {
         console.log(error)
