@@ -72,11 +72,11 @@ function getLocalStorageDate() {
 };
 
 async function getStoredDate() {
-    return fetch('/date').then(res => res.json()).catch(error => console.log('ERROR'));
+    return await fetch('/date').then(res => res.json()).catch(error => console.log('ERROR'));
 }
 
 var storageDate = getLocalStorageDate();
-let stored_date = await getStoredDate();
+const stored_date = getStoredDate();
 const date = new Date(stored_date * 1000); // Multiply by 1000 to convert to milliseconds
 
 var currentDate = new Date();
