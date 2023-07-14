@@ -76,7 +76,8 @@ async function getDate() {
         const response = await fetch('/date');
         const json = await response.json();
 
-        const timestamp = json.timestamp;
+        const timestamp = json[0].timestamp;
+        console.log("timestamp from getDate(): "+timestamp);
         return timestamp;
     } catch (error) {
         console.log(error);
@@ -99,7 +100,7 @@ function isOldDate(date) {
 async function setQuotation() {
     try {
         const date = await getDate();
-        console.log(date);
+        console.log("timestamp inside setQuotation(): "+date);
         if (isOldDate(date)){
             console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
             console.log("The stored date is less than the current date: "+date_valid);
