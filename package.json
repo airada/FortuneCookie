@@ -1,0 +1,29 @@
+{
+  "name": "jirada-daily-quote",
+  "description": "This widget is a quotation generator in the style of an iOS Banner.",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.17.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.2"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "node.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airada/jirada-daily-quote.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airada/jirada-daily-quote/issues"
+  },
+  "homepage": "https://github.com/airada/jirada-daily-quote#readme"
+}
