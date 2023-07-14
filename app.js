@@ -9,7 +9,6 @@ const app = express();
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
 app.use(express.static('public'));
 
 app.get('/date', async(req, res) =>{
@@ -33,7 +32,6 @@ app.get('/quotation', async(req, res) =>{
 app.get('/quotation/:id', async(req, res) =>{
     try {
         let quotation_id = Number(req.params.id);
-        console.log(quotation_id);
 
         const quotation = await Quotation.findOne({id: quotation_id});
 
@@ -57,7 +55,6 @@ app.post('/quotation', async(req, res) => {
 app.put('/quotation/:id', async(req, res) => {
     try {
         let quotation_id = Number(req.params.id);
-        console.log(quotation_id);
 
         const quotation = await Quotation.findOneAndUpdate({id: quotation_id}, req.body);
 
@@ -76,7 +73,7 @@ app.put('/quotation/:id', async(req, res) => {
 const port = process.env.PORT || 3000;
 
 mongoose.set("strictQuery", false);
-mongoose.set('debug', true);
+// mongoose.set('debug', true);
 mongoose.
 connect(process.env.CONNECTION_STRING,{ useNewUrlParser: true })
 .then(() => {

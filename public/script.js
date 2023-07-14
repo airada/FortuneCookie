@@ -17,7 +17,6 @@ function outdated(date) {
     let today = new Date();
     today.setHours(0,0,0,0);
     
-    console.log("Date was previously "+date);
     return (date < today) ? true: false; 
 }
 
