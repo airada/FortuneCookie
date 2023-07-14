@@ -77,16 +77,16 @@ async function getStoredDate() {
 
 var storageDate = getLocalStorageDate();
 const stored_date = getStoredDate();
-let previous_date = stored_date[0]["timestamp"];
+console.log(stored_date);
 const date = new Date(previous_date * 1000);
 
 var currentDate = new Date();
 currentDate.setHours(0,0,0,0);
 
-console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
+// console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
 
 let date_valid = stored_date < currentDate;
-console.log("The stored date is less than the current date: "+date_valid);
+// console.log("The stored date is less than the current date: "+date_valid);
 
 var randomQuotation = "";
 
