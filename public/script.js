@@ -72,14 +72,14 @@ function getLocalStorageDate() {
 };
 
 async function getStoredDate() {
-    return await fetch('/date').then(res => res.json()).catch(error => console.log('ERROR'));
+    const result = await fetch('/date').then(res => res.json()).catch(error => console.log('ERROR'));
+    let timestamp = result[0]["timestamp"];
+    return timestamp;
 }
 
 var storageDate = getLocalStorageDate();
 const stored_date = getStoredDate();
 console.log(stored_date);
-let timestamp = stored_date[0]["timestamp"];
-console.log(timestamp);
 // const date = new Date(previous_date * 1000);
 
 var currentDate = new Date();
