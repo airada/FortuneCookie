@@ -18,22 +18,7 @@ function outdated(date) {
     today.setHours(0,0,0,0);
     
     console.log("Date was previously "+date);
-    updateDate(today);
-
     return (date < today) ? true: false; 
-}
-
-async function updateDate(date) {
-    let today = date.getTime() / 1000;
-    let today_object = {"timestamp": today};
-    
-    fetch('/quotation/0', {
-        method: 'PUT',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(today_object)
-    }).then(data => {
-        console.log("Date is updated to "+data)})
-    .catch(error => {console.log(error)});
 }
 
 async function getQuotationId() {
@@ -58,6 +43,20 @@ async function getQuotation(id) {
     return new_quotation;
 }
 
+async function updateDB(quotation) {
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    today = today.getTime() / 1000;
+    let object = {"timestamp": today, "quotation": quotation};
+    
+    fetch('/quotation/0', {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(object)
+    }).then(data => {console.log(data)})
+    .catch(error => {console.log(error)});
+}
+
 async function setQuotation() {
     try {
         const date = await getDate();
@@ -65,6 +64,12 @@ async function setQuotation() {
         if (outdated(date)){
             const quotation_id = await getQuotationId();
             const quotation = await getQuotation(quotation_id);
+
+            updateDB(quotation);
+
+            document.getElementById("quotation").innerHTML = quotation;
+        } else {
+            const quotation = await getQuotation(0);
             document.getElementById("quotation").innerHTML = quotation;
         }
     } catch (error) {
