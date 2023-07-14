@@ -97,7 +97,7 @@ function outdated(date) {
     } else { return false; }
 }
 
-async function getQuotation() {
+async function getQuotationId() {
     try {
         const response = await fetch('/quotation');
         const json = await response.json();
@@ -106,15 +106,18 @@ async function getQuotation() {
         console.log("The total number of quotations is current: "+total_quotations);
         let quotation_id = Math.floor(Math.random()*total_quotations);
 
-        const quotation_response = await fetch('/quotation/'+quotation_id);
-        const quotation_json = await quotation_response.json();
-
-        let quotation = quotation_json[0].quotation;
-
-        return quotation;
+        return quotation_id;
     } catch (error) {
         console.log(error);
     }
+}
+
+async function getQuotation(id) {
+    const response = await fetch('/quotation/'+id);
+    const json = await response.json();
+
+    let new_quotation = json.quotation;
+    return new_quotation;
 }
 
 async function setQuotation() {
@@ -122,7 +125,9 @@ async function setQuotation() {
         const date = await getDate();
         console.log("timestamp inside setQuotation(): "+date);
         if (outdated(date)){
-            const quotation = await getQuotation();
+            const quotation_id = await getQuotationId();
+            console.log("The randomly selected quotation ID is "+quotation_id);
+            const quotation = await getQuotation(quotation_id);
             console.log("New quotation is: "+quotation);
         }
     } catch (error) {
