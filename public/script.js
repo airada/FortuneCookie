@@ -71,24 +71,50 @@ function getLocalStorageDate() {
     }
 };
 
-async function getStoredDate() {
-    const result = await fetch('/date').then(res => res.json()).catch(error => console.log('ERROR'));
-    let timestamp = result[0]["timestamp"];
-    return timestamp;
+async function getDate() {
+    try {
+        const response = await fetch('/date');
+        const json = await response.json();
+
+        const timestamp = json.timestamp;
+        return timestamp;
+    } catch (error) {
+        console.log(error);
+    }
+    
 }
 
+function isOldDate(date) {
+    let stored_date = new Date(date * 1000);
+    stored_date.setHours(0,0,0,0);
+
+    var today = new Date();
+    today.setHours(0,0,0,0);
+
+    if (stored_date < today) {
+        return true;
+    } else { return false; }
+}
+
+async function setQuotation() {
+    try {
+        const date = await getDate();
+        console.log(date);
+        if (isOldDate(date)){
+            console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
+            console.log("The stored date is less than the current date: "+date_valid);
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+setQuotation();
+
 var storageDate = getLocalStorageDate();
-const stored_date = getStoredDate();
-console.log(stored_date);
-// const date = new Date(previous_date * 1000);
 
 var currentDate = new Date();
 currentDate.setHours(0,0,0,0);
-
-// console.log("The stored date is: "+date+". The current date is: "+currentDate+".");
-
-let date_valid = stored_date < currentDate;
-// console.log("The stored date is less than the current date: "+date_valid);
 
 var randomQuotation = "";
 
